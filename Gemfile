@@ -38,6 +38,7 @@ gem 'slim-rails', '~> 3.2'
 gem 'html2slim', '~> 0.2.0'
 
 # Use bootstrap 4
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 
 # Use devise for authentication
