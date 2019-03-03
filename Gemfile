@@ -45,6 +45,9 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'devise', '~> 4.6', '>= 4.6.1'
 gem 'devise-i18n', '~> 1.8'
 
+# Use FriendlyId to create pretty URLs
+gem 'friendly_id', '~> 5.2', '>= 5.2.5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

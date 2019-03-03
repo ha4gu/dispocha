@@ -1,4 +1,8 @@
 class Room < ApplicationRecord
+  # FriendlyId
+  include FriendlyId
+  friendly_id :code
+
   # association
 
   # validation
