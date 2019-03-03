@@ -1,0 +1,11 @@
+header
+  nav.navbar.navbar-expand-sm.navbar-dark.bg-secondary.fixed-top
+    .container
+      = link_to "dispocha", root_path, class: "navbar-brand"
+      button.navbar-toggler [type="button" data-toggle="collapse"
+      data-target="#topHambergerMenu" aria-controls="topHambergerMenu"
+      aria-expanded="false" aria-label="Toggle navigation"]
+        span.navbar-toggler-icon
+      #topHambergerMenu.collapse.navbar-collapse.justify-content-end
+        .navbar-nav.text-right.text-sm-left
+          = link_to "トップ", root_path, class: "nav-item nav-link"

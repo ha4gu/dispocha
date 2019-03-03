@@ -1,0 +1,11 @@
+// 全ページ共通要素
+
+// ヘッダの高さの定義
+$header_height: 56px;
+
+main {
+  padding-top: $header_height;
+}
+
+h1 { font-size: 1.5em; }
+h2 { font-size: 1.2em; }
