@@ -1,0 +1,29 @@
+- provide :page_title, "ルーム新規作成"
+h1.my-2 ルーム新規作成
+
+= form_with(model: @room, url: rooms_path, local: true) do |f|
+  = render 'shared/error_messages', object: f.object
+  .my-4
+    = f.label :code do
+      div
+        | ルームIDを決めてください
+        ul.small.my-0.pl-4
+          li IDはルームのURLの一部になります
+          ul.my-0.pl-4
+            li
+              = ENV['BASE_URL']
+              | /[ルームID]
+          li 長さは8〜255文字です
+          li 入力されている初期値から変更できます
+          li アルファベット、数字、ハイフン( - )、アンダースコア( _ )が使えます
+    = f.text_field :code, class: 'form-control ml-4 w-75'
+  .my-4
+    = f.label :name do
+      |  ルームの名前を決めてください
+      ul.small.my-0.pl-4
+        li 入力は任意です
+        li ルーム画面で参加者に表示されます
+        li 長さは255文字までです
+    = f.text_field :name, class: 'form-control ml-4 w-75'
+  .my-4.text-center
+    = f.submit "ルーム作成", class: "btn btn-primary"

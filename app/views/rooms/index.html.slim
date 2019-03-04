@@ -1,0 +1,15 @@
+- provide :page_title, "ルーム一覧"
+h1.my-2 ルーム一覧
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Room.human_attribute_name(:id)
+      th= Room.human_attribute_name(:code)
+      th= Room.human_attribute_name(:name)
+  tbody
+    - @rooms.each do |room|
+      tr
+        td= link_to room.id, room_path(room.code)
+        td= link_to room.code, room_path(room.code)
+        td= link_to room.name, room_path(room.code)

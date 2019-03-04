@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  # StaticPages
+  # static_pages
   root 'static_pages#top'
+
+  # rooms
+  resources :rooms
+
 end

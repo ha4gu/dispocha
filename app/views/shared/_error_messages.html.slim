@@ -1,0 +1,9 @@
+- if object.errors.any?
+  #error_explanation
+    .alert.alert-danger
+      = object.errors.count
+      | 個のエラーがあります
+      ul.small.my-0.pl-4
+        - object.errors.full_messages.each do |msg|
+          li
+            = msg

@@ -1,0 +1,27 @@
+- provide :page_title, "ルーム情報"
+h1.my-2 ルーム情報
+
+/ ここはルームトップであり、ルーム情報表示でもある。
+/ ログイン済みの場合にはルームトップとして、ポストの表示を行う。
+/ ログインしていない場合にはルーム情報を表示する。
+/ とりあえず現時点ではルーム情報だけが表示されていればOK。
+
+table.table.table-hover
+  tbody
+    tr
+      th= Room.human_attribute_name(:id)
+      td= @room.id
+    tr
+      th= Room.human_attribute_name(:code)
+      td= @room.code
+    tr
+      th= Room.human_attribute_name(:name)
+      td= @room.name
+    tr
+      th= Room.human_attribute_name(:created_at)
+      td= @room.created_at
+    tr
+      th= Room.human_attribute_name(:updated_at)
+      td= @room.updated_at
+
+= link_to  "編集", edit_room_path(@room.code), class: 'btn btn-primary'

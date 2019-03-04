@@ -1,0 +1,22 @@
+- provide :page_title, "ルーム編集"
+h1.my-2 ルーム編集
+
+= form_with model: @room, local: true do |f|
+  = render 'shared/error_messages', object: f.object
+  .my-4
+    = f.label :code do
+      div
+        | ルームIDを入力してください
+        ul.small.my-0.pl-4
+          li 長さは8〜255文字です
+          li アルファベット、数字、ハイフン( - )、アンダースコア( _ )が使えます
+    = f.text_field :code, class: 'form-control ml-4 w-75'
+  .my-4
+    = f.label :name do
+      |  ルーム表示名を入力してください
+      ul.small.my-0.pl-4
+        li 入力は任意です
+        li 長さは255文字までです
+    = f.text_field :name, class: 'form-control ml-4 w-75'
+  .my-4.text-center
+    = f.submit "ルーム更新", class: "btn btn-primary"
