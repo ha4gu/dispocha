@@ -1,27 +1,34 @@
 - provide :page_title, "ルーム情報"
 h1.my-2 ルーム情報
 
-/ ここはルームトップであり、ルーム情報表示でもある。
-/ ログイン済みの場合にはルームトップとして、ポストの表示を行う。
-/ ログインしていない場合にはルーム情報を表示する。
-/ とりあえず現時点ではルーム情報だけが表示されていればOK。
+- case @status
+- when :accepted
+  / => 投稿表示画面（予定）
+  p You're accepted.
+  p= link_to  "編集", edit_room_path(@room.code), class: 'btn btn-primary'
 
-table.table.table-hover
-  tbody
-    tr
-      th= Room.human_attribute_name(:id)
-      td= @room.id
-    tr
-      th= Room.human_attribute_name(:code)
-      td= @room.code
-    tr
-      th= Room.human_attribute_name(:name)
-      td= @room.name
-    tr
-      th= Room.human_attribute_name(:created_at)
-      td= @room.created_at
-    tr
-      th= Room.human_attribute_name(:updated_at)
-      td= @room.updated_at
+- when :not_accepted
+  / => 参加申請画面（予定）
+  p You're not accepted yet.
+  p= link_to  "入室申請", nil, class: 'btn btn-outline-primary'
 
-= link_to  "編集", edit_room_path(@room.code), class: 'btn btn-primary'
+- when :not_logged_in
+  / => ログインを促す画面（予定）
+  p You're not logged in yet.
+  p= link_to "アカウント登録", new_account_registration_path, class: "btn btn-outline-primary"
+  p= link_to "ログイン", new_account_session_path, class: "btn btn-outline-primary"
+
+/ 以下は@statusによらず共通表示、ルーム情報（名前やQRコードを表示する予定）
+
+#room_public_info
+  table.table.table-hover
+    tbody
+      tr
+        th= Room.human_attribute_name(:id)
+        td= @room.id
+      tr
+        th= Room.human_attribute_name(:code)
+        td= @room.code
+      tr
+        th= Room.human_attribute_name(:name)
+        td= @room.name

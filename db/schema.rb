@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_004309) do
+ActiveRecord::Schema.define(version: 2019_03_05_043753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_004309) do
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.boolean "admin", null: false
+    t.boolean "admin", default: false, null: false
     t.string "provider"
     t.string "uid"
     t.string "reset_password_token"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 2019_03_05_004309) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "personas", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "room_id", null: false
+    t.string "name", default: "", null: false
+    t.boolean "accepted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_personas_on_account_id"
+    t.index ["room_id"], name: "index_personas_on_room_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "code", null: false
     t.string "name"
@@ -38,4 +49,6 @@ ActiveRecord::Schema.define(version: 2019_03_05_004309) do
     t.index ["code"], name: "index_rooms_on_code", unique: true
   end
 
+  add_foreign_key "personas", "accounts"
+  add_foreign_key "personas", "rooms"
 end

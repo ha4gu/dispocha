@@ -4,6 +4,7 @@ class Room < ApplicationRecord
   friendly_id :code
 
   # association
+  has_many :personas
 
   # validation
   VALID_CODE_REGEX = /\A[\w-]+\z/ # a-z A-Z 0-9 _ -
