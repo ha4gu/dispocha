@@ -1,4 +1,7 @@
 class RoomsController < ApplicationController
+  before_action :must_be_logged_in, only: [:index, :show, :edit, :update]
+  before_action :must_be_admin, only: [:index]
+
   def index
     @rooms = Room.all
   end
