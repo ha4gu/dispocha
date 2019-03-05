@@ -44,6 +44,12 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 # Use devise for authentication
 gem 'devise', '~> 4.6', '>= 4.6.1'
 gem 'devise-i18n', '~> 1.8'
+gem 'omniauth', '~> 1.9'
+gem 'omniauth-twitter', '~> 1.4'
+gem 'omniauth-facebook', '~> 5.0'
+gem 'omniauth-google-oauth2', '~> 0.6.0'
+gem 'omniauth-github', '~> 1.3'
+gem 'omniauth-instagram', '~> 1.3'
 
 # Use FriendlyId to create pretty URLs
 gem 'friendly_id', '~> 5.2', '>= 5.2.5'

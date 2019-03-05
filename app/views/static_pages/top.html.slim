@@ -1,3 +1,6 @@
 - provide :page_title, ""
 .text-center.m-4
-  = link_to "ルーム作成", nil, class: "btn btn-outline-primary"
+  p= link_to "ルーム作成", new_room_path, class: "btn btn-outline-primary"
+  p= link_to "アカウント登録", new_account_registration_path, class: "btn btn-outline-primary"
+  p= link_to "ログイン", new_account_session_path, class: "btn btn-outline-primary"
+  p= link_to "ログアウト", destroy_account_session_path, method: :delete, class: "btn btn-outline-primary"

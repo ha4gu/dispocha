@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   # rooms
   resources :rooms
 
+  # accounts - devise
+  devise_for :accounts
+
 end
