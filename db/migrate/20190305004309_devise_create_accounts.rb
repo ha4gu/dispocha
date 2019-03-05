@@ -8,7 +8,7 @@ class DeviseCreateAccounts < ActiveRecord::Migration[5.2]
       t.string :encrypted_password, null: false, default: ""
 
       ## Admin flag (not for devise)
-      t.boolean :admin, null: false, defalt: false
+      t.boolean :admin, null: false, default: false
 
       ## Omniauthable
       t.string :provider
