@@ -8,8 +8,12 @@ h1.my-2 ルーム情報
   p= link_to  "編集", edit_room_path(@room.code), class: 'btn btn-primary'
 
 - when :not_accepted
+  / => 受諾待ち画面（予定）
+  p You're not accepted yet. Please wait.
+
+- when :no_entry
   / => 参加申請画面（予定）
-  p You're not accepted yet.
+  p Wanna enter to this room? Please apply.
   p= link_to  "入室申請", nil, class: 'btn btn-outline-primary'
 
 - when :not_logged_in

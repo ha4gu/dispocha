@@ -21,9 +21,13 @@ class RoomsController < ApplicationController
           # 当該ルームの入室権限を持つ場合
           @status = :accepted
           # => 投稿表示画面
-        else
-          # 当該ルームの入室権限を持たない場合
+        elsif current_account.has_persona_in? @room
+          # 入室申請済みだが受諾されていない場合
           @status = :not_accepted
+          # => 受諾待ち画面
+        else # ログイン済みだがルームに紐づくペルソナが無い状態
+          # 入室申請をまだ行っていない場合
+          @status = :no_entry
           # => 参加申請画面
         end
       else

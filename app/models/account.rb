@@ -13,7 +13,13 @@ class Account < ApplicationRecord
     self.admin = false
   end
 
-  # returns boolean whether this account has an accepted persona in the specified room
+  # returns boolean whether this account has a persona in the specified room
+  def has_persona_in? room
+    p = room.personas.find_by(account_id: self.id)
+    !p.nil? # true when has persona, false when no persona
+  end
+
+  # returns boolean whether this account's persona is already accepted in the specified room
   def is_accepted_in? room
     p = room.personas.find_by(account_id: self.id)
     return false if p.nil? # false when no personas for this room
