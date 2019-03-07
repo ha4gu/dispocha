@@ -5,16 +5,23 @@ h1.my-2 ルーム情報
 - when :accepted
   / => 投稿表示画面（予定）
   p You're accepted.
-  p= link_to  "編集", edit_room_path(@room.code), class: 'btn btn-primary'
-
+  p= link_to  "ルーム情報変更", edit_room_path(@room.code), class: 'btn btn-primary'
+  p= link_to  "ユーザ設定変更", edit_persona_path(@room), class: 'btn btn-outline-primary'
+  p= link_to  "入室権限取り消し", delete_persona_path(@room), method: :delete,
+    data: { confirm: "権限を取り消します。よろしいですか？" },
+    class: 'btn btn-outline-primary'
 - when :not_accepted
   / => 受諾待ち画面（予定）
   p You're not accepted yet. Please wait.
+  p= link_to  "ユーザ設定変更", edit_persona_path(@room), class: 'btn btn-outline-primary'
+  p= link_to  "入室申請取り消し", delete_persona_path(@room), method: :delete,
+    data: { confirm: "申請を取り消します。よろしいですか？" },
+    class: 'btn btn-outline-primary'
 
 - when :no_entry
   / => 参加申請画面（予定）
   p Wanna enter to this room? Please apply.
-  p= link_to  "入室申請", nil, class: 'btn btn-outline-primary'
+  p= link_to  "入室申請", new_persona_path(@room), class: 'btn btn-outline-primary'
 
 - when :not_logged_in
   / => ログインを促す画面（予定）
