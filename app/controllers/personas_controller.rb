@@ -79,6 +79,6 @@ class PersonasController < ApplicationController
   end
 
   def persona_params
-    params.require(:persona).permit(:account_id, :room_id, :name)
+    params.require(:persona).permit(:account_id, :room_id, :name, :icon)
   end
 end
