@@ -31,6 +31,17 @@ h1.my-2 ルーム情報
 
 / 以下は@statusによらず共通表示、ルーム情報（名前やQRコードを表示する予定）
 
+
+#qrcode
+  p.mb-0
+    = Room.human_attribute_name(:name)
+    | :&nbsp;
+    = @room.name
+  p.mb-2
+    | URL:&nbsp;
+    = room_url(@room)
+  = raw @qr.as_html
+
 #room_public_info
   table.table.table-hover
     tbody
@@ -43,3 +54,6 @@ h1.my-2 ルーム情報
       tr
         th= Room.human_attribute_name(:name)
         td= @room.name
+      tr
+        th URL
+        td= room_url(@room)

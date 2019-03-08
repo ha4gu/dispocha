@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.friendly.find(params[:id])
+    @qr = RQRCode::QRCode.new(room_url(@room), :size => 4, :level => :h)
     if @room.nil?
       # ルームが存在しない場合
       flash[:danger] = "アクセスできません。"

@@ -1,3 +1,20 @@
-// Place all the styles related to the rooms controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#qrcode {
+  $qrcode_pixel_size: 8px;
+  margin: 8px;
+  table, tr, td {
+    border: 0px none black;
+    padding: 0px;
+  }
+  table {
+    margin: 0px auto;
+  }
+  tr, td {
+    margin: 0px;
+  }
+  td {
+    width: $qrcode_pixel_size;
+    height: $qrcode_pixel_size;
+  }
+  td.black { background-color: black; }
+  td.white { background-color: white; }
+}
