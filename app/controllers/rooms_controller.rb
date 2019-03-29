@@ -9,12 +9,13 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.friendly.find(params[:id])
-    @qr = RQRCode::QRCode.new(room_url(@room), :size => 4, :level => :h)
     if @room.nil?
       # ルームが存在しない場合
       flash[:danger] = "アクセスできません。"
       redirect_to root_path
     else
+      @qr = RQRCode::QRCode.new(room_url(@room), :size => 4, :level => :h)
+      @posts = @room.posts.order(created_at: :desc)
       # ルームは存在している場合
       if account_signed_in?
         # ログイン済みの場合

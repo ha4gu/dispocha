@@ -1,0 +1,3 @@
+p.single_post
+  = tag.span "#{post.persona.name}: #{post.content} "
+  = tag.span "[#{post.created_at.strftime('%m/%d %H:%M')}]", class: 'datetime'

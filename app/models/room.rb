@@ -5,6 +5,7 @@ class Room < ApplicationRecord
 
   # association
   has_many :personas
+  has_many :posts
 
   # validation
   VALID_CODE_REGEX = /\A[\w-]+\z/ # a-z A-Z 0-9 _ -

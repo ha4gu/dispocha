@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_07_132933) do
+ActiveRecord::Schema.define(version: 2019_03_29_001611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 2019_03_07_132933) do
     t.index ["room_id"], name: "index_personas_on_room_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "persona_id"
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["persona_id"], name: "index_posts_on_persona_id"
+    t.index ["room_id"], name: "index_posts_on_room_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "code", null: false
     t.string "name"
@@ -73,4 +83,6 @@ ActiveRecord::Schema.define(version: 2019_03_07_132933) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "personas", "accounts"
   add_foreign_key "personas", "rooms"
+  add_foreign_key "posts", "personas"
+  add_foreign_key "posts", "rooms"
 end

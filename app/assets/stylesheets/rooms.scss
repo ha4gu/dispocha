@@ -18,3 +18,11 @@
   td.black { background-color: black; }
   td.white { background-color: white; }
 }
+#room_posts {
+  .single_post {
+    margin: 4px;
+  }
+  .datetime {
+    color: lightgrey;
+  }
+}

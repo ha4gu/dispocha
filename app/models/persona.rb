@@ -2,6 +2,7 @@ class Persona < ApplicationRecord
   # association
   belongs_to :account
   belongs_to :room
+  has_many :posts
 
   # Active Strage
   has_one_attached :icon
