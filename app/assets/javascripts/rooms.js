@@ -1,2 +1,13 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+document.addEventListener('DOMContentLoaded', () => {
+  const inputarea = document.getElementById('new_post_input');
+  inputarea.focus();
+  inputarea.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      if (event.target.value !== '') {
+        App.chat.speak(event.target.value);
+        event.target.value = '';
+      };
+      event.preventDefault();
+    };
+  });
+})

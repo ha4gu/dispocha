@@ -5,4 +5,6 @@ class Post < ApplicationRecord
 
   # validation
   validates :content, presence: true
+
+  after_create_commit { BroadcastNewPostJob.perform_later self }
 end

@@ -10,6 +10,10 @@ h1.my-2 ルーム情報
   p= link_to  "入室権限取り消し", delete_persona_path(@room), method: :delete,
     data: { confirm: "権限を取り消します。よろしいですか？" },
     class: 'btn btn-outline-primary'
+  #new_post
+    form
+      = tag.input type: "text", id: "new_post_input",
+        autocomplete: 'off', size: '32'
   #room_posts
     == render @posts
 - when :not_accepted
