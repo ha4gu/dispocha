@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require_tree .
 
 // For Bootstrap 4
 //= require jquery3
