@@ -16,6 +16,7 @@ class RoomsController < ApplicationController
     else
       @qr = RQRCode::QRCode.new(room_url(@room), :size => 4, :level => :h)
       @posts = @room.posts.order(created_at: :desc)
+      @personas = @room.personas
       # ルームは存在している場合
       if account_signed_in?
         # ログイン済みの場合

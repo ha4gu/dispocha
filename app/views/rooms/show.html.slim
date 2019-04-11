@@ -1,68 +1,72 @@
-- provide :page_title, "ルーム情報"
-h1.my-2 ルーム情報
+- provide :page_title, "#{@room.name}"
+h1.my-2 = @room.name
 
-- case @status
-- when :accepted
-  / => 投稿表示画面（予定）
-  p You're accepted.
-  p= link_to  "ルーム情報変更", edit_room_path(@room.code), class: 'btn btn-primary'
-  p= link_to  "ユーザ設定変更", edit_persona_path(@room), class: 'btn btn-outline-primary'
-  p= link_to  "入室権限取り消し", delete_persona_path(@room), method: :delete,
-    data: { confirm: "権限を取り消します。よろしいですか？" },
-    class: 'btn btn-outline-primary'
-  #new_post
-    form
-      = tag.input type: "text", id: "new_post_input",
-        autocomplete: 'off', size: '32'
-  #room_posts
-    == render @posts
-- when :not_accepted
-  / => 受諾待ち画面（予定）
-  p You're not accepted yet. Please wait.
-  p= link_to  "ユーザ設定変更", edit_persona_path(@room), class: 'btn btn-outline-primary'
-  p= link_to  "入室申請取り消し", delete_persona_path(@room), method: :delete,
-    data: { confirm: "申請を取り消します。よろしいですか？" },
-    class: 'btn btn-outline-primary'
+ul.nav.nav-tabs
+  - if @status == :accepted
+    li.nav-item
+      = link_to "チャット", '#room-chat', class: 'nav-link active', 'data-toggle': 'tab'
+    li.nav-item
+      = link_to "メンバー", '#room-members', class: 'nav-link', 'data-toggle': 'tab'
+  - else
+    li.nav-item
+      = link_to "ステータス", '#room-status', class: 'nav-link active', 'data-toggle': 'tab'
+  li.nav-item
+    = link_to "ルーム情報", '#room-info', class: 'nav-link', 'data-toggle': 'tab'
 
-- when :no_entry
-  / => 参加申請画面（予定）
-  p Wanna enter to this room? Please apply.
-  p= link_to  "入室申請", new_persona_path(@room), class: 'btn btn-outline-primary'
+.tab-content.my-2
+  - if @status == :accepted
+    #room-chat.tab-pane.active
+      #new_post
+        form
+          = tag.input type: "text", id: "new_post_input",
+            autocomplete: 'off', size: '32'
+      #room_posts
+        == render @posts
+    #room-members.tab-pane
+      div.my-2
+        span.mr-2
+          = link_to  "表示設定の変更", edit_persona_path(@room),
+            class: 'btn btn-outline-primary'
+        span
+          = link_to  "退室", delete_persona_path(@room), method: :delete,
+            data: { confirm: "『#{@room.name}』から退室します。よろしいですか？" },
+            class: 'btn btn-outline-danger'
+      div.my-2
+        h2 メンバーの一覧
+        ul
+          == render @personas
+  - else
+    #room-status.tab-pane.active
+      - case @status
+        - when :not_logged_in
+          p You're not logged in yet.
+          p = link_to "アカウント登録", new_account_registration_path, class: "btn btn-outline-primary"
+          p = link_to "ログイン", new_account_session_path, class: "btn btn-outline-primary"
+        - when :no_entry
+          / => 参加申請画面（予定）
+          p Wanna enter to this room? Please apply.
+          p = link_to  "入室申請", new_persona_path(@room), class: 'btn btn-outline-primary'
+        - when :not_accepted
+          / => 受諾待ち画面（予定）
+          p You're not accepted yet. Please wait.
+          p = link_to  "ユーザ設定変更", edit_persona_path(@room), class: 'btn btn-outline-primary'
+          p = link_to  "入室申請取り消し", delete_persona_path(@room), method: :delete,
+            data: { confirm: "申請を取り消します。よろしいですか？" },
+            class: 'btn btn-outline-primary'
+  #room-info.tab-pane
+    p = link_to  "ルーム情報の変更", edit_room_path(@room.code),
+      class: 'btn btn-outline-primary'
+    table.table.table-hover
+      tbody
+        tr
+          th 表示名
+          td= @room.name
+        tr
+          th URL
+          td= room_url(@room)
+    #qrcode
+      = raw @qr.as_html
 
-- when :not_logged_in
-  / => ログインを促す画面（予定）
-  p You're not logged in yet.
-  p= link_to "アカウント登録", new_account_registration_path, class: "btn btn-outline-primary"
-  p= link_to "ログイン", new_account_session_path, class: "btn btn-outline-primary"
-
-/ 以下は@statusによらず共通表示、ルーム情報（名前やQRコードを表示する予定）
-
-
-#qrcode
-  p.mb-0
-    = Room.human_attribute_name(:name)
-    | :&nbsp;
-    = @room.name
-  p.mb-2
-    | URL:&nbsp;
-    = room_url(@room)
-  = raw @qr.as_html
-
-#room_public_info
-  table.table.table-hover
-    tbody
-      tr
-        th= Room.human_attribute_name(:id)
-        td= @room.id
-      tr
-        th= Room.human_attribute_name(:code)
-        td= @room.code
-      tr
-        th= Room.human_attribute_name(:name)
-        td= @room.name
-      tr
-        th URL
-        td= room_url(@room)
 
 = javascript_include_tag "cable.js"
 = javascript_include_tag "rooms.js"
