@@ -6,7 +6,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -127,3 +128,6 @@ memo.md
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+### RubyMine
+/.idea
