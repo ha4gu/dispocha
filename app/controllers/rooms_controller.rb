@@ -35,7 +35,7 @@ class RoomsController < ApplicationController
         end
       else
         # 未ログインの場合
-        session[:room_visiting] = @room.code
+        session[:account_return_to] = room_url(@room)
         @status = :not_logged_in
         # => ログインを促す画面
       end
