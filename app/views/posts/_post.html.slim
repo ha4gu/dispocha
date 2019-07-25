@@ -1,7 +1,7 @@
 .single_post
   .single_post_icon
     - if post.persona.icon.attached?
-      = image_tag post.persona.icon.variant(resize: "80x80"), size: 40, class: "persona-icon"
+      = image_tag url_for(post.persona.icon.variant(resize: "80x80")), size: 40, class: "persona-icon"
     - else
       = image_tag "/no_icon.png", size: 40, class: "persona-icon"
   .single_post_name
