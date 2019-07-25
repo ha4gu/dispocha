@@ -16,7 +16,10 @@ h1.my-2 ユーザ設定変更
     = f.label :icon
     #current_icon.ml-4
       = tag.span "現在のアイコン: "
-      = image_tag @persona.icon.variant(resize: "80x80"), size: 80, class: "persona-icon"
+      - if @persona.icon.attached?
+        = image_tag @persona.icon.variant(resize: "80x80"), size: 80, class: "persona-icon"
+      - else
+        = image_tag "/no_icon.png", size: 40, class: "persona-icon"
     #new_icon
       .custom-file
         = f.file_field :icon, id: 'new-icon-input', class: 'custom-file-input'
