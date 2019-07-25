@@ -1,3 +1,17 @@
-p.single_post
-  = tag.span "#{post.persona.name}: #{post.content} "
-  = tag.span "[#{post.created_at.strftime('%m/%d %H:%M')}]", class: 'datetime'
+.single_post
+  .single_post_icon
+    - if post.persona.icon.attached?
+      = image_tag post.persona.icon.variant(resize: "80x80"), size: 40, class: "persona-icon"
+    - else
+      = image_tag "/no_icon.png", size: 40, class: "persona-icon"
+  .single_post_name
+    = tag.span post.persona.name
+  .single_post_content
+    = tag.span post.content
+  .single_post_datetime
+    - post_date = post.created_at.strftime('%m/%d')
+    - post_time = post.created_at.strftime('%H:%M')
+    span.datetime
+      = post_date
+      br
+      = post_time

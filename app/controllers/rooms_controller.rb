@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
       flash[:danger] = "アクセスできません。"
       redirect_to root_path
     else
-      @qr = RQRCode::QRCode.new(room_url(@room), :size => 4, :level => :h)
+      @qr = RQRCode::QRCode.new(room_url(@room), :size => 6, :level => :h)
       @posts = @room.posts.order(created_at: :desc)
       @personas = @room.personas
       # ルームは存在している場合

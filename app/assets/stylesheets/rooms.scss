@@ -29,3 +29,45 @@
 input {
   border: 1px solid lightgray;
 }
+img.persona-icon {
+  border-radius: 50%;
+  margin-right: 8px;
+}
+#new_icon .custom-file-label::after {
+  content: "参照";
+}
+
+.single_post {
+  // border: 1px dotted yellow;
+  display: grid;
+  grid-template-columns: 44px 1fr 64px;
+  grid-template-rows: 24px 1fr;
+}
+.single_post_icon {
+  grid-column:   1;
+  grid-row:    1/3;
+  padding-top: 8px;
+}
+.single_post_name {
+  grid-column:   2;
+  grid-row:      1;
+}
+.single_post_content {
+  grid-column:   2;
+  grid-row:      2;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  margin-left: 4px;
+  padding: 2px 4px;
+}
+.single_post_datetime {
+  grid-column:   3;
+  grid-row:    1/3;
+  position: relative;
+  span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+  }
+}

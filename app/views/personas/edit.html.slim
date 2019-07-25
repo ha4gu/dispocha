@@ -14,6 +14,14 @@ h1.my-2 ユーザ設定変更
     = f.text_field :name, class: 'form-control ml-4 w-75'
   .my-4
     = f.label :icon
-    = f.file_field :icon, class: 'form-control ml-4'
+    #current_icon.ml-4
+      = tag.span "現在のアイコン: "
+      = image_tag @persona.icon.variant(resize: "80x80"), size: 80, class: "persona-icon"
+    #new_icon
+      .custom-file
+        = f.file_field :icon, id: 'new-icon-input', class: 'custom-file-input'
+        = tag.label "画像を選択...", class: 'custom-file-label', for: 'new-icon-input'
   .my-4.text-center
     = f.submit "変更", class: "btn btn-primary"
+
+= javascript_include_tag "personas.js"
