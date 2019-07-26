@@ -37,10 +37,11 @@ ul.nav.nav-tabs
       div.my-2
         h2 入室待ち
         ul
+          == render @personas.where(accepted: false)
       div.my-2
         h2 入室済み
         ul
-          == render @personas
+          == render @personas.where(accepted: true)
   - else
     / ステータス
     #room-status.tab-pane.active

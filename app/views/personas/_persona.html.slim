@@ -4,3 +4,7 @@
   - else
     = image_tag "/no_icon.png", size: 40, class: "persona-icon"
   = tag.span "#{persona.name}"
+  - unless persona.accepted?
+    / 現時点では無効。ボタンクリックにより実際に許可/拒否できるようにしたい。
+    = tag.button "許可", type: "button", disabled: true, class: "btn btn-success mx-1"
+    = tag.button "拒否", type: "button", disabled: true, class: "btn btn-danger mx-1"
